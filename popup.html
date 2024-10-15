@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Insight</title>
+  <link rel="stylesheet" href="styles/popup.css">
+</head>
+
+<body>
+  <div class="container">
+    <h2>Analyze Styles</h2>
+
+    <button id="trackTagBtn">Start Tracking Tag</button>
+
+    <label for="tagInput">Enter selector name (optional):</label>
+    <input type="text" id="tagInput" placeholder="e.g., div p">
+
+    <button id="declaredStylesBtn">Get Declared Styles</button>
+    <button id="computedStylesBtn">Get Computed Styles</button>
+    <button id="mediaRulesBtn">Get Media Rules</button>
+    <button id="keyframesRulesBtn">Get Keyframes Rules</button>
+
+    <div id="cssInfo" class="hidden">
+      <h3>Style Information</h3>
+      <textarea id="styleData" readonly></textarea>
+      <button id="copyBtn">Copy to Clipboard</button>
+    </div>
+
+    <button id="moreDetailsBtn" class="hidden">View More Details</button>
+  </div>
+
+  <script type="module" src="popup.js"></script>
+</body>
+
+</html>
