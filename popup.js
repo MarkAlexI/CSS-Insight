@@ -1,4 +1,5 @@
 import { executeScript } from './scripts/common.js';
+import { displayStyles } from './scripts/displayStyles.js';
 
 document.getElementById('declaredStylesBtn').addEventListener('click', () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -8,14 +9,20 @@ document.getElementById('declaredStylesBtn').addEventListener('click', () => {
     executeScript(tabId, './scripts/getDeclaredStyles.js', (result) => {
       const styleData = result[0].result;
 
-      document.getElementById('styleData').value = styleData;
-      document.getElementById('cssInfo').classList.remove('hidden');
-      document.getElementById('moreDetailsBtn').classList.remove('hidden');
-
-      chrome.storage.local.set({ cssData: styleData }, () => {
-        console.log('CSS data saved');
-      });
+      displayStyles(styleData);
     }, selector);
+  });
+});
+
+document.getElementById('mediaRulesBtn').addEventListener('click', () => {
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    const tabId = tabs[0].id;
+
+    executeScript(tabId, './scripts/getMediaRules.js', (result) => {
+      const styleData = result[0].result;
+
+      displayStyles(styleData);
+    }, '');
   });
 });
 
