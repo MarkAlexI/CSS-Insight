@@ -1,0 +1,18 @@
+{
+  "chromename": { "message": "CSS Insight" },
+  "shortname": { "message": "CSS Insight" },
+  "description": { "message": "CSS Insight lets you quickly view and edit CSS styles on any webpage, providing detailed style info and one-click copying." },
+  "defaulttitle": { "message": "CSS Insight" },
+  "mainheader": { "message": "Analyze Styles" },
+  "tracktagstart": { "message": "Start Tracking Tag" },
+  "tracktagstop": { "message": "Stop Tracking Tag" },
+  "taginputlabel": { "message": "Enter selector name (optional):" },
+  "taginputplaceholder": { "message": "e.g., div p" },
+  "declaredstyles": { "message": "Get Declared Styles" },
+  "computedstyles": { "message": "Get Computed Styles" },
+  "mediarules": { "message": "Get Media Rules" },
+  "keyframesrules": { "message": "Get Keyframes Rules" },
+  "infoheader": { "message": "Style Information" },
+  "copytext": { "message": "Copy to Clipboard" },
+  "moredetails": { "message": "View More Details" }
+}

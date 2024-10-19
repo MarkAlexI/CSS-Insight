@@ -1,7 +1,17 @@
 {
   "manifest_version": 3,
-  "name": "CSS Insight",
-  "version": "1.0",
+  "name": "__MSG_chromename__",
+  "short_name": "__MSG_shortname__",
+  "description": "__MSG_description__",
+  "version": "1.1.0",
+  "author": "MarkAlexI",
+  "icons": {
+    "16": "images/icon-16.png",
+    "32": "images/icon-32.png",
+    "192": "images/icon-192.png",
+    "512": "images/icon-512.png"
+  },
+  "default_locale": "en",
   "permissions": [
     "storage",
     "scripting",
@@ -9,7 +19,8 @@
     "tabs"
   ],
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_title": "__MSG_defaulttitle__"
   },
   "content_scripts": [
     {
