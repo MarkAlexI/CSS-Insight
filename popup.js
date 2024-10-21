@@ -4,9 +4,22 @@ import { displayStyles } from './scripts/displayStyles.js';
 document.getElementById('declaredStylesBtn').addEventListener('click', () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     const tabId = tabs[0].id;
-    const selector = document.getElementById('tagInput').value;
+    const selector = document.getElementById('tagInput').value || 'body';
 
     executeScript(tabId, './scripts/getDeclaredStyles.js', (result) => {
+      const styleData = result[0].result;
+
+      displayStyles(styleData);
+    }, selector);
+  });
+});
+
+document.getElementById('computedStylesBtn').addEventListener('click', () => {
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    const tabId = tabs[0].id;
+    const selector = document.getElementById('tagInput').value || 'body';
+
+    executeScript(tabId, './scripts/getComputedStyles.js', (result) => {
       const styleData = result[0].result;
 
       displayStyles(styleData);

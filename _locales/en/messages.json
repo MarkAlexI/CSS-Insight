@@ -14,5 +14,6 @@
   "keyframesrules": { "message": "Get Keyframes Rules" },
   "infoheader": { "message": "Style Information" },
   "copytext": { "message": "Copy to Clipboard" },
-  "moredetails": { "message": "View More Details" }
+  "moredetails": { "message": "View More Details" },
+  "stylesfrom": { "message": "Styles from: " }
 }
