@@ -39,6 +39,18 @@ document.getElementById('mediaRulesBtn').addEventListener('click', () => {
   });
 });
 
+document.getElementById('keyframesRulesBtn').addEventListener('click', () => {
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    const tabId = tabs[0].id;
+
+    executeScript(tabId, './scripts/getKeyframesRules.js', (result) => {
+      const styleData = result[0].result;
+
+      displayStyles(styleData);
+    }, '');
+  });
+});
+
 document.getElementById('copyBtn').addEventListener('click', () => {
   const text = document.getElementById('styleData').value;
   navigator.clipboard.writeText(text).then(() => {
