@@ -26,7 +26,8 @@ textarea {
   display: none;
 }
 
-button, input {
+button,
+input {
   width: 100%;
   margin: .33rem 0;
   border: none;
@@ -55,4 +56,20 @@ input {
 
 input:hover {
   background-color: lightskyblue;
+}
+
+.track {
+  background-color: #7b1fa2;
+
+  &:hover {
+    background-color: #4a148c;
+  }
+}
+
+.apply {
+  background-color: #00796b;
+
+  &:hover {
+    background-color: #004d40;
+  }
 }

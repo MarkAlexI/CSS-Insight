@@ -1,3 +1,5 @@
+const CLOSE = chrome.i18n.getMessage('close');
+
 function showModalWithCSSData(cssData) {
   const modal = document.createElement('div');
   modal.style.position = 'fixed';
@@ -21,11 +23,11 @@ function showModalWithCSSData(cssData) {
 
   const textArea = document.createElement('textarea');
   textArea.style.width = '100%';
-  textArea.style.height = '300px';
+  textArea.style.height = '800px';
   textArea.textContent = cssData;
 
   const closeButton = document.createElement('button');
-  closeButton.textContent = 'Закрити';
+  closeButton.textContent = CLOSE;
   closeButton.style.marginTop = '10px';
   closeButton.style.padding = '10px';
   closeButton.style.backgroundColor = '#007bff';

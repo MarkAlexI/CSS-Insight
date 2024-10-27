@@ -6,6 +6,7 @@ const NO_DATA = chrome.i18n.getMessage('nodata');
 
 document.getElementById('declaredStylesBtn').addEventListener('click', () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    if (tabs[0].url?.startsWith("chrome://")) return undefined;
     const tabId = tabs[0].id;
     const selector = document.getElementById('tagInput').value || 'body';
 
@@ -19,6 +20,7 @@ document.getElementById('declaredStylesBtn').addEventListener('click', () => {
 
 document.getElementById('computedStylesBtn').addEventListener('click', () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    if (tabs[0].url?.startsWith("chrome://")) return undefined;
     const tabId = tabs[0].id;
     const selector = document.getElementById('tagInput').value || 'body';
 
@@ -32,6 +34,7 @@ document.getElementById('computedStylesBtn').addEventListener('click', () => {
 
 document.getElementById('mediaRulesBtn').addEventListener('click', () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    if (tabs[0].url?.startsWith("chrome://")) return undefined;
     const tabId = tabs[0].id;
 
     executeScript(tabId, './scripts/getMediaRules.js', (result) => {
@@ -44,6 +47,7 @@ document.getElementById('mediaRulesBtn').addEventListener('click', () => {
 
 document.getElementById('keyframesRulesBtn').addEventListener('click', () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    if (tabs[0].url?.startsWith("chrome://")) return undefined;
     const tabId = tabs[0].id;
 
     executeScript(tabId, './scripts/getKeyframesRules.js', (result) => {
@@ -66,6 +70,7 @@ document.getElementById('moreDetailsBtn').addEventListener('click', () => {
     const cssData = result.cssData || NO_DATA;
 
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      if (tabs[0].url?.startsWith("chrome://")) return undefined;
       const tabId = tabs[0].id;
 
       executeScript(tabId, './scripts/showModalWithCSSData.js', (result) => {
@@ -81,6 +86,7 @@ document.getElementById('applyRuleBtn').addEventListener('click', () => {
 
 document.getElementById('injectCSSBtn').addEventListener('click', () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    if (tabs[0].url?.startsWith("chrome://")) return undefined;
     const tabId = tabs[0].id;
 
     executeScript(tabId, './scripts/applyStyles.js', (result) => {

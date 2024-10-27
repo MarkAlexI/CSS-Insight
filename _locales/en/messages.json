@@ -20,5 +20,6 @@
   "stylesfrom": { "message": "Styles from: " },
   "applyrule": { "message": "Apply Rule" },
   "newruleheader": { "message": "Write rule:" },
-  "injectcss": { "message": "Inject your CSS" }
+  "injectcss": { "message": "Inject your CSS" },
+  "close": { "message": "Close" }
 }
