@@ -73,3 +73,7 @@ input:hover {
     background-color: #004d40;
   }
 }
+
+.hideBtn {
+  width: 20%;
+}

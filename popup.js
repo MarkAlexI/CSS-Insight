@@ -88,12 +88,23 @@ document.getElementById('injectCSSBtn').addEventListener('click', () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     if (tabs[0].url?.startsWith("chrome://")) return undefined;
     const tabId = tabs[0].id;
+    const rule = document.getElementById('newRuleData').value;
+    
+    if (rule.length == 0) return;
 
     executeScript(tabId, './scripts/applyStyles.js', (result) => {
       console.log(result[0].result);
       document.getElementById('cssInfo').classList.add('hidden');
-    }, '');
+    }, rule);
   });
+});
+
+document.getElementById('hideCssInfo').addEventListener('click', () => {
+  document.getElementById('cssInfo').classList.add('hidden');
+});
+
+document.getElementById('hideNewRule').addEventListener('click', () => {
+  document.getElementById('newRule').classList.add('hidden');
 });
 
 /*document.getElementById('getTagName').addEventListener('change', function() {
