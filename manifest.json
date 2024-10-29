@@ -3,7 +3,7 @@
   "name": "__MSG_chromename__",
   "short_name": "__MSG_shortname__",
   "description": "__MSG_description__",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "author": "MarkAlexI",
   "icons": {
     "16": "images/icon-16.png",
@@ -28,7 +28,7 @@
       "matches": ["<all_urls>"],
       "js": [
         "scripts/formatRule.js",
-        "content.js"
+        "scripts/getTagName.js"
       ]
     }
   ]

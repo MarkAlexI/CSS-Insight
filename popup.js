@@ -3,6 +3,8 @@ import { displayStyles } from './scripts/displayStyles.js';
 
 const COPIED = chrome.i18n.getMessage('copied');
 const NO_DATA = chrome.i18n.getMessage('nodata');
+const STOP = chrome.i18n.getMessage('tracktagstop');
+const START = chrome.i18n.getMessage('tracktagstart');
 
 document.getElementById('declaredStylesBtn').addEventListener('click', () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -89,7 +91,7 @@ document.getElementById('injectCSSBtn').addEventListener('click', () => {
     if (tabs[0].url?.startsWith("chrome://")) return undefined;
     const tabId = tabs[0].id;
     const rule = document.getElementById('newRuleData').value;
-    
+
     if (rule.length == 0) return;
 
     executeScript(tabId, './scripts/applyStyles.js', (result) => {
@@ -107,13 +109,23 @@ document.getElementById('hideNewRule').addEventListener('click', () => {
   document.getElementById('newRule').classList.add('hidden');
 });
 
-/*document.getElementById('getTagName').addEventListener('change', function() {
-  const isChecked = this.checked;
-  chrome.storage.sync.set({ getTagName: isChecked }, function() {
-    console.log('Checkbox state saved:', isChecked);
-  });
+const trackTagBtn = document.getElementById('trackTagBtn');
+
+chrome.storage.sync.get(['isTracking'], function(result) {
+  trackTagBtn.textContent = result.isTracking ? STOP : START;
 });
 
-chrome.storage.sync.get('getTagName', function(data) {
-  document.getElementById('getTagName').checked = data.getTagName || false;
-});*/
+trackTagBtn.addEventListener('click', function() {
+  chrome.storage.sync.get(['isTracking'], function(result) {
+    const isActive = result.isTracking;
+
+    chrome.storage.sync.set({ isTracking: !isActive }, function() {
+      trackTagBtn.textContent = !isActive ? STOP : START;
+
+      chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+        if (tabs[0].url?.startsWith("chrome://")) return undefined;
+        chrome.tabs.sendMessage(tabs[0].id, { action: !isActive ? 'start' : 'stop' });
+      });
+    });
+  });
+});
