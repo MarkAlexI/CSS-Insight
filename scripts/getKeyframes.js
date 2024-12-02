@@ -11,7 +11,7 @@ function getKeyframes() {
         }
       }
     } catch (e) {
-      console.warn('Cannot access stylesheet:', sheet.href);
+      console.warn(e.cause);
     }
   }
 

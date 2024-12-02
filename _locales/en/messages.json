@@ -21,5 +21,7 @@
   "applyrule": { "message": "Apply Rule" },
   "newruleheader": { "message": "Write rule:" },
   "injectcss": { "message": "Inject your CSS" },
-  "close": { "message": "Close" }
+  "close": { "message": "Close" },
+  "notfound": { "message": "No elements found for selector" },
+  "norules": { "message": "No rules for selector " }
 }

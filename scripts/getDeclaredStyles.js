@@ -1,4 +1,5 @@
 function getDeclaredStyles(selector = 'body') {
+  const NO_RULES = chrome.i18n.getMessage('norules');
   const stylesheets = document.styleSheets;
   let result = '';
 
@@ -12,11 +13,11 @@ function getDeclaredStyles(selector = 'body') {
         }
       }
     } catch (e) {
-      console.warn('Cannot access stylesheet:', sheet.href);
+      console.warn(e.cause);
     }
   }
 
-  return result ? result.trim() : `No rules for selector "${selector}"`;
+  return result ? result.trim() : `${NO_RULES} "${selector}"`;
 }
 
 getDeclaredStyles(data);

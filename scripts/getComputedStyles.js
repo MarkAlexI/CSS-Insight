@@ -1,8 +1,9 @@
 function getComputedStyles(selector) {
+  const NOT_FOUND = chrome.i18n.getMessage('notfound');
   const element = document.querySelector(selector);
 
   if (!element) {
-    return `No elements found for selector "${selector}"`;
+    return `${NOT_FOUND} "${selector}"`;
   }
 
   const computedStyle = window.getComputedStyle(element);

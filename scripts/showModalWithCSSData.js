@@ -1,6 +1,6 @@
-const CLOSE = chrome.i18n.getMessage('close');
-
 function showModalWithCSSData(cssData) {
+  const CLOSE = chrome.i18n.getMessage('close');
+
   const modal = document.createElement('div');
   modal.style.position = 'fixed';
   modal.style.top = '0';
@@ -18,6 +18,7 @@ function showModalWithCSSData(cssData) {
   modalContent.style.padding = '20px';
   modalContent.style.borderRadius = '5px';
   modalContent.style.width = '80%';
+  modalContent.style.height = '900px';
   modalContent.style.maxHeight = '80%';
   modalContent.style.overflowY = 'auto';
 
@@ -43,9 +44,6 @@ function showModalWithCSSData(cssData) {
   modalContent.appendChild(closeButton);
   modal.appendChild(modalContent);
   document.body.appendChild(modal);
-  
-  console.log(cssData, 'cssData');
-  console.log(modal, 'modal');
   
   return null;
 }

@@ -9,7 +9,7 @@ function getMediaRules() {
         }
       }
     } catch (e) {
-      console.warn(`Не вдалося отримати доступ до стилів через політику безпеки: ${stylesheet.href}`);
+      console.warn(e.cause);
     }
   }
 
