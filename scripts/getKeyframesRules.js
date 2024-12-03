@@ -1,5 +1,6 @@
 function getKeyframes() {
-  const keyframes = [];
+  const NO_KEYFRAMES = chrome.i18n.getMessage('nokeyframes');
+  let keyframes = '';
 
   for (const sheet of document.styleSheets) {
     try {
@@ -7,15 +8,15 @@ function getKeyframes() {
 
       for (const rule of rules) {
         if (rule.type === CSSRule.KEYFRAMES_RULE) {
-          keyframes.push(rule);
+        keyframes += formatRule(rule) + '\n\n';
         }
       }
     } catch (e) {
-      console.warn(e.cause);
+      console.warn(e.message);
     }
   }
 
-  return keyframes;
+  return keyframes ? keyframes.trim() : NO_KEYFRAMES;
 }
 
 getKeyframes();

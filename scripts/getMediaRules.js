@@ -1,19 +1,20 @@
 function getMediaRules() {
-  let mediaRules = [];
+  const NO_MEDIA = chrome.i18n.getMessage('nomedia');
+  let mediaRules = '';
   
   for (let stylesheet of document.styleSheets) {
     try {
       for (let rule of stylesheet.cssRules) {
         if (rule instanceof CSSMediaRule) {
-          mediaRules.push(formatRule(rule));
+          mediaRules += formatRule(rule) + '\n\n';
         }
       }
     } catch (e) {
-      console.warn(e.cause);
+      console.warn(e.message);
     }
   }
 
-  return mediaRules.join('\n\n');
+  return mediaRules ? mediaRules.trim() : NO_MEDIA;
 }
 
 getMediaRules();

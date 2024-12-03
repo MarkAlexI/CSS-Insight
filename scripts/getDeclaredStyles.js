@@ -13,7 +13,7 @@ function getDeclaredStyles(selector = 'body') {
         }
       }
     } catch (e) {
-      console.warn(e.cause);
+      console.warn(e.message);
     }
   }
 
