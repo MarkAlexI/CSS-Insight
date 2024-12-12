@@ -6,7 +6,7 @@ function showModalWithCSSData(cssData) {
   modal.style.top = '0';
   modal.style.left = '0';
   modal.style.width = '100%';
-  modal.style.height = '100%';
+  modal.style.height = '100dvh';
   modal.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
   modal.style.display = 'flex';
   modal.style.justifyContent = 'center';
@@ -18,13 +18,18 @@ function showModalWithCSSData(cssData) {
   modalContent.style.padding = '20px';
   modalContent.style.borderRadius = '5px';
   modalContent.style.width = '80%';
-  modalContent.style.height = '900px';
-  modalContent.style.maxHeight = '80%';
+  modalContent.style.maxWidth = '400px';
+  modalContent.style.height = '80%';
+  modalContent.style.maxHeight = '900px';
   modalContent.style.overflowY = 'auto';
 
   const textArea = document.createElement('textarea');
-  textArea.style.width = '100%';
-  textArea.style.height = '800px';
+  textArea.style.color = 'rgb(255, 0, 255)';
+  textArea.style.textShadow = 'rgba(0, 255, 0, 0.25) 2px 2px 4px';
+  textArea.style.width = '95%';
+  textArea.style.maxWidth = '380px';
+  textArea.style.height = '85%';
+  textArea.style.maxHeight = '800px';
   textArea.textContent = cssData;
 
   const closeButton = document.createElement('button');
@@ -44,7 +49,7 @@ function showModalWithCSSData(cssData) {
   modalContent.appendChild(closeButton);
   modal.appendChild(modalContent);
   document.body.appendChild(modal);
-  
+
   return null;
 }
 
