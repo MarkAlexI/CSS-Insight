@@ -1,5 +1,6 @@
 function getMediaRules() {
   const NO_MEDIA = chrome.i18n.getMessage('nomedia');
+  const WAS_ERROR = chrome.i18n.getMessage('waserror');
   let mediaRules = '';
   
   for (let stylesheet of document.styleSheets) {
@@ -11,6 +12,7 @@ function getMediaRules() {
       }
     } catch (e) {
       console.warn(e.message);
+      mediaRules += WAS_ERROR;
     }
   }
 

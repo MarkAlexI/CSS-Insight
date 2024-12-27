@@ -1,5 +1,6 @@
 function getKeyframes() {
   const NO_KEYFRAMES = chrome.i18n.getMessage('nokeyframes');
+  const WAS_ERROR = chrome.i18n.getMessage('waserror');
   let keyframes = '';
 
   for (const sheet of document.styleSheets) {
@@ -13,6 +14,7 @@ function getKeyframes() {
       }
     } catch (e) {
       console.warn(e.message);
+      keyframes += WAS_ERROR;
     }
   }
 

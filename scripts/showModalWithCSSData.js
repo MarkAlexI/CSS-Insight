@@ -17,7 +17,7 @@ function showModalWithCSSData(cssData) {
   modalContent.style.backgroundColor = 'white';
   modalContent.style.padding = '20px';
   modalContent.style.borderRadius = '5px';
-  modalContent.style.width = '80%';
+  modalContent.style.width = '76%';
   modalContent.style.maxWidth = '400px';
   modalContent.style.height = '80%';
   modalContent.style.maxHeight = '900px';
@@ -28,7 +28,7 @@ function showModalWithCSSData(cssData) {
   textArea.style.textShadow = 'rgba(0, 255, 0, 0.25) 2px 2px 4px';
   textArea.style.width = '95%';
   textArea.style.maxWidth = '380px';
-  textArea.style.height = '85%';
+  textArea.style.height = '88%';
   textArea.style.maxHeight = '800px';
   textArea.textContent = cssData;
 

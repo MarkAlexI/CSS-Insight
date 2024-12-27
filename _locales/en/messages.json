@@ -25,5 +25,6 @@
   "notfound": { "message": "No elements found for selector" },
   "norules": { "message": "No rules for selector " },
   "nokeyframes": { "message": "No @keyframes rules for that resource." },
-  "nomedia": { "message": "No media rules for that resource." }
+  "nomedia": { "message": "No media rules for that resource." },
+  "waserror": { "message": "Something went wrong. Try reloading the page and opening the extension again." }
 }

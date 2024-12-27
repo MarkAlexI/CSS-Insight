@@ -1,5 +1,6 @@
 function getDeclaredStyles(selector = 'body') {
   const NO_RULES = chrome.i18n.getMessage('norules');
+  const WAS_ERROR = chrome.i18n.getMessage('waserror');
   const stylesheets = document.styleSheets;
   let result = '';
 
@@ -14,6 +15,7 @@ function getDeclaredStyles(selector = 'body') {
       }
     } catch (e) {
       console.warn(e.message);
+      result += WAS_ERROR;
     }
   }
 
