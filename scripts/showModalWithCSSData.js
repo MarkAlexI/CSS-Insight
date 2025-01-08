@@ -1,11 +1,14 @@
 function showModalWithCSSData(cssData) {
   const CLOSE = chrome.i18n.getMessage('close');
+  const COPY = chrome.i18n.getMessage('copytext');
+  const COPIED = chrome.i18n.getMessage('copied');
 
   const modal = document.createElement('div');
   modal.style.position = 'fixed';
   modal.style.top = '0';
   modal.style.left = '0';
   modal.style.width = '100%';
+  modal.style.height = '100vh';
   modal.style.height = '100dvh';
   modal.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
   modal.style.display = 'flex';
@@ -45,8 +48,25 @@ function showModalWithCSSData(cssData) {
     modal.remove();
   });
 
+  const copyButton = document.createElement('button');
+  copyButton.textContent = COPY;
+  copyButton.style.marginTop = '10px';
+  copyButton.style.marginLeft = '16px';
+  copyButton.style.padding = '10px';
+  copyButton.style.backgroundColor = '#007bff';
+  copyButton.style.color = 'white';
+  copyButton.style.border = 'none';
+  copyButton.style.cursor = 'pointer';
+
+  copyButton.addEventListener('click', () => {
+    navigator.clipboard.writeText(cssData).then(() => {
+      alert(COPIED);
+    });
+  });
+
   modalContent.appendChild(textArea);
   modalContent.appendChild(closeButton);
+  modalContent.appendChild(copyButton);
   modal.appendChild(modalContent);
   document.body.appendChild(modal);
 
