@@ -1,6 +1,7 @@
 import { executeScript } from './scripts/common.js';
 import { displayStyles } from './scripts/displayStyles.js';
 
+const COPY = chrome.i18n.getMessage('copytext');
 const COPIED = chrome.i18n.getMessage('copied');
 const NO_DATA = chrome.i18n.getMessage('nodata');
 const STOP = chrome.i18n.getMessage('tracktagstop');
@@ -63,7 +64,10 @@ document.getElementById('keyframesRulesBtn').addEventListener('click', () => {
 document.getElementById('copyBtn').addEventListener('click', () => {
   const text = document.getElementById('styleData').value;
   navigator.clipboard.writeText(text).then(() => {
-    alert(COPIED);
+    document.getElementById('copyBtn').textContent = COPIED;
+    setTimeout(() => {
+      document.getElementById('copyBtn').textContent = COPY;
+    }, 3000);
   });
 });
 
