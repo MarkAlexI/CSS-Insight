@@ -116,14 +116,19 @@ document.getElementById('hideNewRule').addEventListener('click', () => {
 });
 
 const trackTagBtn = document.getElementById('trackTagBtn');
+const tagInput = document.getElementById('tagInput');
 
-chrome.storage.sync.get(['isTracking'], function(result) {
+chrome.storage.sync.get(['isTracking', 'tagInfo'], function(result) {
   trackTagBtn.textContent = result.isTracking ? STOP : START;
+  tagInput.value = result.tagInfo || '';
 });
 
 trackTagBtn.addEventListener('click', function() {
-  chrome.storage.sync.get(['isTracking'], function(result) {
+  chrome.storage.sync.get(['isTracking', 'tagInfo'], function(result) {
     const isActive = result.isTracking;
+    const tagInfo = result.tagInfo;
+    
+    if (isActive) tagInput.value = tagInfo || '';
 
     chrome.storage.sync.set({ isTracking: !isActive }, function() {
       trackTagBtn.textContent = !isActive ? STOP : START;
