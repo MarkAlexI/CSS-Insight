@@ -18,6 +18,7 @@ function createTooltip() {
   tooltip.style.borderRadius = '3px';
   tooltip.style.pointerEvents = 'none';
   tooltip.style.display = 'none';
+  tooltip.style.zIndex = '9999';
   document.body.appendChild(tooltip);
 }
 
@@ -33,8 +34,8 @@ function onMouseMove(event) {
 
   if (elementUnderCursor) {
     const tagName = elementUnderCursor.tagName.toLowerCase();
-    const className = elementUnderCursor.className ? ` .${elementUnderCursor.className}` : '';
-    const id = elementUnderCursor.id ? ` #${elementUnderCursor.id}` : '';
+    const className = elementUnderCursor.className ? `.${elementUnderCursor.className}` : '';
+    const id = elementUnderCursor.id ? `#${elementUnderCursor.id}` : '';
     tagInfo = `${tagName}${id}${className}`;
     
     const info = `Tag: ${tagInfo}`;
