@@ -3,8 +3,9 @@
   "name": "__MSG_chromename__",
   "short_name": "__MSG_shortname__",
   "description": "__MSG_description__",
-  "version": "1.12.11",
+  "version": "1.12.12",
   "author": "MarkAlexI",
+  "homepage_url": "https://ext.pp.ua/css-insight.html",
   "icons": {
     "16": "images/icon-16.png",
     "32": "images/icon-32.png",
