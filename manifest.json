@@ -3,7 +3,7 @@
   "name": "__MSG_chromename__",
   "short_name": "__MSG_shortname__",
   "description": "__MSG_description__",
-  "version": "1.12.12",
+  "version": "1.13.0",
   "author": "MarkAlexI",
   "homepage_url": "https://ext.pp.ua/css-insight.html",
   "icons": {
@@ -29,7 +29,8 @@
       "matches": ["<all_urls>"],
       "js": [
         "scripts/formatRule.js",
-        "scripts/getTagName.js"
+        "scripts/getTagName.js",
+        "scripts/getSubSelectors.js"
       ]
     }
   ]
