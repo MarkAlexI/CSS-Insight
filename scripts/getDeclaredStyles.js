@@ -7,6 +7,8 @@ function getDeclaredStyles(selector = 'body') {
   let subSelectors = getSubSelectors(selector);
 
   for (const sheet of stylesheets) {
+    if (subSelectors === null) break;
+    
     try {
       const rules = sheet.cssRules || sheet.rules;
 
