@@ -1,7 +1,7 @@
 import { executeScript } from './scripts/common.js';
 import { displayStyles } from './scripts/displayStyles.js';
 import { formatTagName } from './scripts/formatTagName.js';
-import { isBlockedURL } from './scripts/isBlockedURL.js'
+import { isBlockedURL } from './scripts/isBlockedURL.js';
 
 const COPY = chrome.i18n.getMessage('copytext');
 const COPIED = chrome.i18n.getMessage('copied');

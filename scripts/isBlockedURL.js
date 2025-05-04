@@ -1,4 +1,5 @@
 export function isBlockedURL(tabs) {
+  if (!tabs) return true;
   const url = tabs[0]?.url || '';
   
   const blockedPatterns = [
@@ -8,7 +9,7 @@ export function isBlockedURL(tabs) {
     /^https:\/\/chromewebstore\.google\.com/,
     /^edge:\/\//,
     /^kiwi:\/\//,
-    /^moz-extension:\/\//,
+    /google/,
   ];
   
   return blockedPatterns.some(pattern => pattern.test(url));
