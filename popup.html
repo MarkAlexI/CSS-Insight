@@ -24,17 +24,20 @@
     
     <div id="cssInfo" class="hidden">
       <h3 data-i18n="infoheader"></h3>
-      <button id="hideCssInfo" class="hideBtn">X</button>
+      <div class="controls">
+        <button id="hideCssInfo" class="hideBtn">X</button>
+        <button id="saveBtn" data-i18n="savetofile">Save to file</button>
+      </div>
       <div>
         <pre class="output">
           <code
             class="language-css"
             id="styleData"></code>
         </pre>
-        </div>
+      </div>
       <button id="copyBtn" data-i18n="copytext"></button>
     </div>
-
+    
     <button id="moreDetailsBtn" class="hidden" data-i18n="moredetails"></button>
     
     <button id="applyRuleBtn" data-i18n="applyrule" class="apply"></button>
@@ -45,7 +48,7 @@
       <button id="injectCSSBtn" data-i18n="injectcss" class="apply"></button>
     </div>
   </div>
-
+  
   <script src="scripts/i18n.js"></script>
   <script type="module" src="popup.js"></script>
   <script src="scripts/highlight.min.js"></script>

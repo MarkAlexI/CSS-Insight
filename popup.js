@@ -14,10 +14,10 @@ document.getElementById('declaredStylesBtn').addEventListener('click', () => {
     if (isBlockedURL(tabs)) return undefined;
     const tabId = tabs[0].id;
     const selector = document.getElementById('tagInput').value || 'body';
-
+    
     executeScript(tabId, './scripts/getDeclaredStyles.js', (result) => {
       const styleData = result[0].result;
-
+      
       displayStyles(styleData);
     }, selector);
   });
@@ -28,10 +28,10 @@ document.getElementById('computedStylesBtn').addEventListener('click', () => {
     if (isBlockedURL(tabs)) return undefined;
     const tabId = tabs[0].id;
     const selector = document.getElementById('tagInput').value || 'body';
-
+    
     executeScript(tabId, './scripts/getComputedStyles.js', (result) => {
       const styleData = result[0].result;
-
+      
       displayStyles(styleData);
     }, selector);
   });
@@ -41,10 +41,10 @@ document.getElementById('mediaRulesBtn').addEventListener('click', () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     if (isBlockedURL(tabs)) return undefined;
     const tabId = tabs[0].id;
-
+    
     executeScript(tabId, './scripts/getMediaRules.js', (result) => {
       const styleData = result[0].result;
-
+      
       displayStyles(styleData);
     }, '');
   });
@@ -54,10 +54,10 @@ document.getElementById('keyframesRulesBtn').addEventListener('click', () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     if (isBlockedURL(tabs)) return undefined;
     const tabId = tabs[0].id;
-
+    
     executeScript(tabId, './scripts/getKeyframesRules.js', (result) => {
       const styleData = result[0].result;
-
+      
       displayStyles(styleData);
     }, '');
   });
@@ -76,16 +76,30 @@ document.getElementById('copyBtn').addEventListener('click', () => {
 document.getElementById('moreDetailsBtn').addEventListener('click', () => {
   chrome.storage.local.get('cssData', (result) => {
     const cssData = result.cssData || NO_DATA;
-
+    
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       if (isBlockedURL(tabs)) return undefined;
       const tabId = tabs[0].id;
-
+      
       executeScript(tabId, './scripts/showModalWithCSSData.js', (result) => {
         console.log(result, 'result');
       }, cssData);
     });
   });
+});
+
+document.getElementById('saveBtn').addEventListener('click', () => {
+  const cssCode = document.getElementById('styleData').textContent;
+  const blob = new Blob([cssCode], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'styles.txt';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
 });
 
 document.getElementById('applyRuleBtn').addEventListener('click', () => {
@@ -99,9 +113,9 @@ document.getElementById('injectCSSBtn').addEventListener('click', () => {
     if (isBlockedURL(tabs)) return undefined;
     const tabId = tabs[0].id;
     const rule = document.getElementById('newRuleData').value;
-
+    
     if (rule.length == 0) return;
-
+    
     executeScript(tabId, './scripts/applyStyles.js', (result) => {
       console.log(result[0].result);
       document.getElementById('cssInfo').classList.add('hidden');
@@ -131,16 +145,16 @@ trackTagBtn.addEventListener('click', function() {
   chrome.storage.sync.get(['isTracking', 'tagInfo'], function(result) {
     const isActive = result.isTracking;
     const tagInfo = result.tagInfo;
-
+    
     if (isActive) {
       tagInput.value = tagInfo ?
         formatTagName(tagInfo) :
         '';
     }
-
+    
     chrome.storage.sync.set({ isTracking: !isActive }, function() {
       trackTagBtn.textContent = !isActive ? STOP : START;
-
+      
       chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
         if (isBlockedURL(tabs)) return undefined;
         chrome.tabs.sendMessage(tabs[0].id, { action: !isActive ? 'start' : 'stop' });
