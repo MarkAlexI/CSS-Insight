@@ -4,11 +4,11 @@ function getComputedStyles(selector) {
   const element = document.querySelector(selector);
 
   if (!element) {
-    return `${NOT_FOUND} "${selector}"`;
+    return `/* ${NOT_FOUND} "${selector}" */`;
   }
 
   const computedStyle = window.getComputedStyle(element);
-  let result = `${FOUND} "${selector}": \n\n`;
+  let result = `/* ${FOUND} "${selector}": */\n\n`;
 
   for (let property of computedStyle) {
     result += `${property}: ${computedStyle.getPropertyValue(property)};\n`;

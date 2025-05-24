@@ -40,21 +40,20 @@ function getDeclaredStyles(selector = 'body') {
       for (const rule of rules) {
         for (const _selector of subSelectors) {
           if (checkRule(rule, _selector)) {
-           // console.log(rule.parentStyleSheet.href);
-            result += `${FOUND} "${_selector}"(${rule.parentStyleSheet?.href}): \n`;
+            result += `/* ${FOUND} "${_selector}"(${rule.parentStyleSheet?.href}): */\n`;
             result += formatRule(rule) + '\n\n';
           }
         }
       }
     } catch (e) {
       console.warn(e.message);
-      result += WAS_ERROR;
+      result += `/* ${WAS_ERROR} */`;
     }
   }
   
   return result.length ?
     result :
-    `${NO_RULES} "${selector}"`;
+    `/* ${NO_RULES} "${selector} */"`;
 }
 
 getDeclaredStyles(data);

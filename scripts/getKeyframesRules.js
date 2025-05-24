@@ -14,11 +14,11 @@ function getKeyframes() {
       }
     } catch (e) {
       console.warn(e.message);
-      keyframes += WAS_ERROR;
+      keyframes += `/* ${WAS_ERROR} */`;
     }
   }
 
-  return keyframes ? keyframes.trim() : NO_KEYFRAMES;
+  return keyframes ? keyframes.trim() : `/* ${NO_KEYFRAMES} */`;
 }
 
 getKeyframes();
