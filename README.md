@@ -6,7 +6,7 @@
 ![Last commit](https://img.shields.io/github/last-commit/MarkAlexI/CSS-Insight)
 ![Issues](https://img.shields.io/github/issues/MarkAlexI/CSS-Insight)
 [![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-v1.18.1-brightgreen?logo=google-chrome)](https://chromewebstore.google.com/detail/keejoflofbcbepjbbhnmiomgmjjihmnb)
-![status](https://img.shields.io/badge/status-v1.18.1-blue)
+![status](https://img.shields.io/badge/status-v1.18.3-blue)
 
 CSS Insight is a powerful browser extension designed to simplify and enhance your CSS workflow. With this tool, you can instantly access and edit styles directly on any webpage, making it a must-have for web developers.
 
