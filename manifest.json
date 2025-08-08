@@ -3,7 +3,7 @@
   "name": "__MSG_chromename__",
   "short_name": "__MSG_shortname__",
   "description": "__MSG_description__",
-  "version": "1.19.0",
+  "version": "1.19.1",
   "author": "MarkAlexI",
   "homepage_url": "https://ext.pp.ua/css-insight.html",
   "icons": {
@@ -44,5 +44,9 @@
       "update/update.js"
     ],
     "matches": ["<all_urls>"]
-  }]
+  }],
+  "background": {
+    "service_worker": "scripts/service_worker.js",
+    "type": "module"
+  }
 }
