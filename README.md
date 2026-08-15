@@ -6,59 +6,69 @@
 ![Last commit](https://img.shields.io/github/last-commit/MarkAlexI/CSS-Insight)
 ![Issues](https://img.shields.io/github/issues/MarkAlexI/CSS-Insight)
 [![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-v1.19.1-brightgreen?logo=google-chrome)](https://chromewebstore.google.com/detail/keejoflofbcbepjbbhnmiomgmjjihmnb)
-![status](https://img.shields.io/badge/status-v1.19.1-blue)
+![status](https://img.shields.io/badge/status-v1.20.0-blue)
 
-CSS Insight is a powerful browser extension designed to simplify and enhance your CSS workflow. With this tool, you can instantly access and edit styles directly on any webpage, making it a must-have for web developers.
+CSS Insight is a lightweight browser extension for inspecting and testing CSS directly on a webpage. It is designed for quick checks when opening a full developer tools workflow is inconvenient.
 
 ## Features
 
-- **View Declared Styles**: Quickly access all CSS rules applied to any element on the page.
-- **Edit Styles**: Modify styles in real time with an intuitive interface.
-- **Media Rules and Keyframes**: Explore advanced CSS features like media queries and animations.
-- **One-Click Copy**: Copy CSS rules to your clipboard for fast implementation.
-- **Style Analysis**: Dive deep into how styles are structured and applied to elements.
+- **Element picker**: Click or tap an element to create a usable CSS selector.
+- **Declared styles**: Find CSS rules available through the page CSSOM for a selector.
+- **Computed styles**: View the final computed property values of an element.
+- **Media rules and keyframes**: Explore page-level responsive and animation rules.
+- **CSS preview**: Apply a custom rule to the current page without changing the website source.
+- **Copy and export**: Copy retrieved CSS or save it as a `.css` file.
+- **On-page details**: Open long output in an isolated page dialog.
+
+CSS Insight does not collect analytics or send inspected page data to a server. It requests page and tab access so a picker started from a mobile popup tab can wait for a selection on any supported webpage in the same browser window. The content controller stays idle until the user starts the picker.
 
 ## Installation
 
-### Google Chrome
-1. Visit the [Chrome Web Store](https://chromewebstore.google.com/detail/keejoflofbcbepjbbhnmiomgmjjihmnb).
-2. Click **Add to Chrome**.
+### Google Chrome and Chromium browsers
+
+1. Visit [CSS Insight in the Chrome Web Store](https://chromewebstore.google.com/detail/keejoflofbcbepjbbhnmiomgmjjihmnb).
+2. Select **Add to Chrome**.
 3. Confirm the installation.
 
 ### Mozilla Firefox
-1. Visit the [Firefox Add-ons Store](https://addons.mozilla.org/firefox/addon/css-insight).
-2. Click **Add to Firefox**.
-3. Confirm the installation.
 
-## How to Use
+The Firefox version is published separately on [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/css-insight/) and is maintained in a separate browser target.
 
-1. Install the extension in your browser.
-2. Click on the CSS Insight icon in your toolbar.
-3. Hover over any element on the page to view its styles.
-4. Use the interface to edit or copy styles as needed.
+## How to use
 
-## Screenshots
+1. Open a regular webpage and select the CSS Insight toolbar icon.
+2. Select **Pick an Element**.
+3. Switch to any supported webpage in the same browser window and click or tap an element. The first selection wins and picking stops in every tab.
+4. Return to CSS Insight. The selector field updates without requiring a popup refresh.
+5. Retrieve declared or computed styles, inspect page rules, or apply a CSS preview.
 
-![CSS Insight Screenshot](/images/icon-512.png)
+The picker waits for up to two minutes and can be cancelled from the popup. In browsers such as Kiwi, CSS Insight also remembers the page that supplied the selected element, so later CSS operations target that page.
 
-## Contribution
+Chrome does not allow extensions to run on browser-internal pages or Chrome Web Store pages. Local `file:` pages require the user-controlled **Allow access to file URLs** setting.
 
-We welcome contributions from the community! If you have ideas for new features or find a bug, feel free to open an issue or submit a pull request.
+## CSSOM limitations
+
+Browsers prevent scripts from reading the rules of some cross-origin stylesheets. CSS Insight reports these inaccessible stylesheets, but cannot inspect their declarations without broader network permissions. Declared styles, media rules and keyframes therefore represent the CSS rules exposed by the page CSSOM.
+
+## Development
+
+The project uses vanilla JavaScript and has no runtime or development dependencies beyond Node.js 18 or newer.
+
+```bash
+npm test
+npm run check
+npm run build
+```
+
+`npm run build` creates two reproducible release archives in `dist/`:
+
+- a minimal Chromium store package built from an explicit allowlist;
+- a complete source archive with tests and build tools.
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+CSS Insight is licensed under the [MIT License](LICENSE).
 
-## Third-Party Libraries and Licenses
+## Third-party library
 
-This project makes use of the following third-party library:
-
-- **highlight.js**  
-  Website: [https://highlightjs.org/](https://highlightjs.org/)  
-  License: [BSD 3-Clause License](https://github.com/highlightjs/highlight.js/blob/main/LICENSE)
-
-  *highlight.js* is a syntax highlighting library used for displaying code with automatic language detection and formatting.  
-  It is included in this project under the terms of the BSD 3-Clause License.
-  
-  Note: The project uses the "atom-one-dark" theme included with highlight.js.
----
+CSS Insight includes [highlight.js](https://highlightjs.org/) 11.10.0 under the BSD 3-Clause License. The packaged syntax theme is `atom-one-light`. See [third_party/LICENSE.highlightjs.txt](third_party/LICENSE.highlightjs.txt).

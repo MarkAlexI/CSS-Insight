@@ -17,4 +17,4 @@ function getComputedStyles(selector) {
   return result.trim();
 }
 
-getComputedStyles(data);
+getComputedStyles(globalThis.__CSS_INSIGHT_DATA__);

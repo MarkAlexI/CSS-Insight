@@ -3,7 +3,7 @@
   "name": "__MSG_chromename__",
   "short_name": "__MSG_shortname__",
   "description": "__MSG_description__",
-  "version": "1.19.1",
+  "version": "1.20.0",
   "author": "MarkAlexI",
   "homepage_url": "https://ext.pp.ua/css-insight.html",
   "icons": {
@@ -15,36 +15,32 @@
   "default_locale": "en",
   "permissions": [
     "storage",
-    "scripting",
+    "tabs",
     "activeTab",
-    "tabs"
+    "scripting"
   ],
-  "host_permissions": ["*://*/"],
+  "host_permissions": [
+    "<all_urls>"
+  ],
   "action": {
     "default_popup": "popup.html",
     "default_title": "__MSG_defaulttitle__"
   },
-  "content_scripts": [
-  {
-    "matches": ["<all_urls>"],
-    "js": [
-      "scripts/formatRule.js",
-      "scripts/getTagName.js",
-      "scripts/getSubSelectors.js"
-    ]
-  }],
   "content_security_policy": {
-    "extension_pages": "default-src 'self'; style-src 'self';"
+    "extension_pages": "default-src 'self'; object-src 'none'; base-uri 'none';"
   },
-  "web_accessible_resources": [
-  {
-    "resources": [
-      "update/update.html",
-      "update/update.css",
-      "update/update.js"
-    ],
-    "matches": ["<all_urls>"]
-  }],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "scripts/formatRule.js",
+        "scripts/getSubSelectors.js",
+        "scripts/getTagName.js"
+      ]
+    }
+  ],
   "background": {
     "service_worker": "scripts/service_worker.js",
     "type": "module"

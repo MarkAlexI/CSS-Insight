@@ -1,16 +1,13 @@
 export function displayStyles(styleData) {
-  setTimeout(function() {
-    let output = document.getElementById('styleData');
-    output.textContent = styleData;
-    output.scrollTop = 0;
-    output.removeAttribute('data-highlighted');
-    if (hljs) hljs.highlightAll();
+  const output = document.getElementById('styleData');
+  output.textContent = typeof styleData === 'string' ? styleData : String(styleData ?? '');
+  output.scrollTop = 0;
+  output.removeAttribute('data-highlighted');
 
-    document.getElementById('cssInfo').classList.remove('hidden');
-    document.getElementById('moreDetailsBtn').classList.remove('hidden');
-  }, 0);
+  if (globalThis.hljs) {
+    globalThis.hljs.highlightElement(output);
+  }
 
-  chrome.storage.local.set({ cssData: styleData }, () => {
-    console.log('CSS data saved');
-  });
+  document.getElementById('cssInfo').classList.remove('hidden');
+  document.getElementById('moreDetailsBtn').classList.remove('hidden');
 }

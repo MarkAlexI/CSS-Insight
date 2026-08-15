@@ -9,7 +9,7 @@ function getKeyframes() {
 
       for (const rule of rules) {
         if (rule.type === CSSRule.KEYFRAMES_RULE) {
-        keyframes += formatRule(rule) + '\n\n';
+        keyframes += globalThis.__CSS_INSIGHT_STYLE_UTILS__.formatRule(rule) + '\n\n';
         }
       }
     } catch (e) {
