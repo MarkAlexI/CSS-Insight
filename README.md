@@ -6,16 +6,16 @@
 ![Last commit](https://img.shields.io/github/last-commit/MarkAlexI/CSS-Insight)
 ![Issues](https://img.shields.io/github/issues/MarkAlexI/CSS-Insight)
 [![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-v1.19.1-brightgreen?logo=google-chrome)](https://chromewebstore.google.com/detail/keejoflofbcbepjbbhnmiomgmjjihmnb)
-![status](https://img.shields.io/badge/status-v1.20.1-blue)
+![status](https://img.shields.io/badge/status-v1.21.0-blue)
 
 CSS Insight is a lightweight browser extension for inspecting and testing CSS directly on a webpage. It is designed for quick checks when opening a full developer tools workflow is inconvenient.
 
 ## Features
 
 - **Element picker**: Click or tap an element to create a usable CSS selector.
-- **Declared styles**: Find CSS rules available through the page CSSOM for a selector.
+- **Declared styles**: Find matching rules across nested CSS at-rules, native nesting and document-level constructed stylesheets.
 - **Computed styles**: View the final computed property values of an element.
-- **Media rules and keyframes**: Explore page-level responsive and animation rules.
+- **Media rules and keyframes**: Explore responsive and animation rules recursively across the document CSSOM.
 - **CSS preview**: Apply a custom rule to the current page without changing the website source.
 - **Copy and export**: Copy retrieved CSS or save it as a `.css` file.
 - **On-page details**: Open long output in an isolated page dialog.
@@ -49,6 +49,8 @@ Chrome does not allow extensions to run on browser-internal pages or Chrome Web 
 ## CSSOM limitations
 
 Browsers prevent scripts from reading the rules of some cross-origin stylesheets. CSS Insight reports these inaccessible stylesheets, but cannot inspect their declarations without broader network permissions. Declared styles, media rules and keyframes therefore represent the CSS rules exposed by the page CSSOM.
+
+Document-level `adoptedStyleSheets` are included. Styles inside iframes and shadow roots remain outside the current inspection target.
 
 ## Development
 

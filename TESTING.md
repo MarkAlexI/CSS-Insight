@@ -30,12 +30,18 @@ Run `npm run build`, then load `dist/chromium` as an unpacked extension through 
 
 ## CSS tools
 
+- Serve `tests/fixtures/modern-css.html` from localhost and use it for the modern CSS checks below.
 - Retrieve declared styles for `body` and for the selected element.
+- Retrieve a matching rule inside each of `@media`, `@supports`, `@layer`, `@container` and `@scope`. Confirm every result retains its parent at-rule context.
+- Test native CSS nesting with a selector that uses `&`. Confirm the nested rule is returned for the matching element.
+- Add a constructed stylesheet through `document.adoptedStyleSheets`. Confirm its rules, media queries and keyframes are returned and labeled **constructed stylesheet**.
+- Add `.other, .unrelated` beside a selected `.card` rule. Confirm unrelated selector branches are not returned.
+- Confirm `.card:hover` and `.card::before` remain discoverable when `.card` is selected.
 - Reload the extension over an existing test tab, retrieve declared styles and confirm the page console contains no `getSubSelectors` or `formatRule` reference error.
 - Retrieve a rule declared inside a page `<style>` element. Confirm its source is labeled as inline instead of `null`.
 - Apply a CSS Insight preview, retrieve the same rule and confirm its source is labeled **CSS Insight preview**.
 - Retrieve computed styles for a valid selector.
-- Enter an invalid selector and confirm a visible error is shown without breaking the popup.
+- Enter an invalid selector in both Declared Styles and Computed Styles. Confirm the localized validation result is shown without breaking the popup.
 - Retrieve media rules and keyframes on a page that contains them.
 - Copy retrieved CSS and save it to `styles.css`.
 - Open **View More Details**, copy from the page dialog, close it with Escape and close it by selecting the backdrop.
@@ -64,6 +70,6 @@ Run `npm run build`, then load `dist/chromium` as an unpacked extension through 
 - Confirm the picker content controller remains idle until **Pick an Element** is selected.
 - Confirm Chromium uses an MV3 service worker.
 - Run `npm run check` and confirm all automated tests pass.
-- Run `unzip -t dist/CSS-Insight-chromium-1.20.1-store.zip`.
-- Run `unzip -t dist/CSS-Insight-chromium-1.20.1-source.zip` and confirm `manifest.json`, `package.json`, `scripts/` and `tests/` are at the ZIP root.
+- Run `unzip -t dist/CSS-Insight-chromium-1.21.0-store.zip`.
+- Run `unzip -t dist/CSS-Insight-chromium-1.21.0-source.zip` and confirm `manifest.json`, `package.json`, `scripts/` and `tests/` are at the ZIP root.
 - Confirm the store archive contains no tests, build tools, `.gitignore` or obsolete scripts.
