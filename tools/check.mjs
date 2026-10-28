@@ -56,11 +56,14 @@ const manifest = JSON.parse(await readFile(path.join(root, 'manifest.json'), 'ut
 const messages = JSON.parse(await readFile(path.join(root, '_locales/en/messages.json'), 'utf8'));
 const packageJson = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8'));
 const readme = await readFile(path.join(root, 'README.md'), 'utf8');
+const buildSource = await readFile(path.join(root, 'tools/build.mjs'), 'utf8');
 
 check(manifest.manifest_version === 3, 'manifest_version must remain 3 for the Chromium build.');
 check(manifest.version === packageJson.version, 'manifest.json and package.json versions differ.');
 check(!packageJson.buildLabel,
   'Release packages must not carry an experimental build label.');
+check(/await createZip\(sourceFiles, sourceZip\);/.test(buildSource),
+  'The source archive must place project files directly at the ZIP root.');
 check(readme.includes(`v${manifest.version}`), 'README badges do not contain the manifest version.');
 check(JSON.stringify(manifest.permissions) ===
   JSON.stringify(['storage', 'tabs', 'activeTab', 'scripting']),
@@ -122,6 +125,13 @@ for (const file of firstPartyTextFiles) {
 }
 
 const pickerSource = await readFile(path.join(root, 'scripts/getTagName.js'), 'utf8');
+const pickerControllerVersions = [...pickerSource.matchAll(
+  /(?:existingController\?\.version ===|version:)\s*['"]([^'"]+)['"]/g
+)].map(match => match[1]);
+
+check(pickerControllerVersions.length === 2 &&
+  pickerControllerVersions.every(version => version === manifest.version),
+  'The picker controller version must match manifest.json.');
 check(!/javascript\s*:/i.test(pickerSource), 'Picker must not create javascript: URLs.');
 check(!/\.href\s*=/.test(pickerSource), 'Picker must not rewrite link destinations.');
 check(!/storage\.local/.test(pickerSource),

@@ -1,10 +1,10 @@
 {
   "name": "css-insight",
-  "version": "1.20.0",
+  "version": "1.20.1",
   "private": true,
   "type": "module",
   "description": "Chromium source and reproducible store packaging for CSS Insight.",
-  "releaseDate": "2026-08-15",
+  "releaseDate": "2026-08-27",
   "scripts": {
     "test": "node --test",
     "check": "node tools/check.mjs && npm test",

@@ -266,9 +266,13 @@ function setBusy(value) {
 function updatePickerUi() {
   clearTimeout(pickerExpiryTimer);
   pickerExpiryTimer = 0;
-  trackTagBtn.textContent = pickerSession ? STOP : START;
+  const pickerLabel = pickerSession ? STOP : START;
 
-  if (pickerResult.selector) {
+  if (trackTagBtn.textContent !== pickerLabel) {
+    trackTagBtn.textContent = pickerLabel;
+  }
+
+  if (pickerResult.selector && tagInput.value !== pickerResult.selector) {
     tagInput.value = pickerResult.selector;
   }
 
@@ -560,14 +564,19 @@ trackTagBtn.addEventListener('click', async () => {
 chrome.storage.onChanged.addListener((changes, areaName) => {
   if (areaName !== 'local') return;
 
+  const sessionChange = changes[PICKER_SESSIONS_KEY];
+  const resultChange = changes[PICKER_RESULT_KEY];
+
+  if (!sessionChange && !resultChange) return;
+
   let selected = false;
 
-  if (changes[PICKER_SESSIONS_KEY]) {
-    pickerSession = getWindowSession(changes[PICKER_SESSIONS_KEY].newValue);
+  if (sessionChange) {
+    pickerSession = getWindowSession(sessionChange.newValue);
   }
 
-  if (changes[PICKER_RESULT_KEY]?.newValue) {
-    const nextResult = getWindowResult(changes[PICKER_RESULT_KEY].newValue);
+  if (resultChange) {
+    const nextResult = getWindowResult(resultChange.newValue);
     selected = nextResult.updatedAt > pickerResult.updatedAt && Boolean(nextResult.selector);
     pickerResult = nextResult;
 

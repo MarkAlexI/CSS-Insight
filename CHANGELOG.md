@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.20.1 - 2026-08-27
+
+### Fixed
+
+- Stabilized the desktop extension popup width by removing its viewport-dependent sizing feedback loop and reserving consistent space for the vertical scrollbar.
+- Unrelated local-storage updates no longer trigger popup DOM updates.
+- Repeated tracking of the same target tab no longer rewrites local storage.
+
+### Development
+
+- Added regression coverage for fixed popup geometry, filtered storage updates and deduplicated target tracking.
+- Source archives now place project files directly at the ZIP root for reliable IDE import.
+
 ## 1.20.0 - 2026-08-15
 
 ### Changed

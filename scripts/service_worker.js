@@ -255,6 +255,7 @@ async function rememberTab(tab) {
   await loadedTargets;
 
   if (!isEligibleTab(tab)) return false;
+  if (trackedTabs.get(tab.windowId) === tab.id) return true;
 
   trackedTabs.set(tab.windowId, tab.id);
   await persistTargets();

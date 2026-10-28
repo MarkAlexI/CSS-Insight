@@ -196,7 +196,7 @@ const storeZip = path.join(distDirectory, `CSS-Insight-chromium-${artifactVersio
 const sourceZip = path.join(distDirectory, `CSS-Insight-chromium-${artifactVersion}-source.zip`);
 
 await createZip(runtimeFiles, storeZip);
-await createZip(sourceFiles, sourceZip, 'CSS-Insight');
+await createZip(sourceFiles, sourceZip);
 
 const storeSize = (await stat(storeZip)).size;
 const sourceSize = (await stat(sourceZip)).size;
