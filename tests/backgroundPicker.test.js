@@ -71,7 +71,7 @@ function installChromeMock({ silentMessage = () => false } = {}) {
     },
     runtime: {
       lastError: null,
-      getManifest: () => ({ version: '1.22.0' }),
+      getManifest: () => ({ version: '1.22.1' }),
       getURL: path => `chrome-extension://test/${path}`,
       onMessage: events.message,
       onStartup: events.startup,

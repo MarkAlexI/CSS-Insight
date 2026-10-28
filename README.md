@@ -6,7 +6,7 @@
 ![Last commit](https://img.shields.io/github/last-commit/MarkAlexI/CSS-Insight)
 ![Issues](https://img.shields.io/github/issues/MarkAlexI/CSS-Insight)
 [![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-v1.19.1-brightgreen?logo=google-chrome)](https://chromewebstore.google.com/detail/keejoflofbcbepjbbhnmiomgmjjihmnb)
-![status](https://img.shields.io/badge/status-v1.22.0-blue)
+![status](https://img.shields.io/badge/status-v1.22.1-blue)
 
 CSS Insight is a lightweight browser extension for inspecting and testing CSS directly on a webpage. It is designed for quick checks when opening a full developer tools workflow is inconvenient.
 
@@ -19,6 +19,7 @@ CSS Insight is a lightweight browser extension for inspecting and testing CSS di
 - **CSS preview**: Apply a custom rule to the selected document or open shadow root without changing the website source.
 - **Copy and export**: Copy retrieved CSS or save it as a `.css` file.
 - **On-page details**: Open long output in an isolated page dialog.
+- **Localized interface**: Use CSS Insight in English, German, Spanish, Japanese, Brazilian Portuguese or Ukrainian.
 
 CSS Insight does not collect analytics or send inspected page data to a server. It requests page and tab access so a picker started from a mobile popup tab can wait for a selection on any supported webpage in the same browser window. The content controller stays idle until the user starts the picker.
 

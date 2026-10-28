@@ -53,12 +53,25 @@ for (const file of javascriptFiles) {
 }
 
 const manifest = JSON.parse(await readFile(path.join(root, 'manifest.json'), 'utf8'));
-const messages = JSON.parse(await readFile(path.join(root, '_locales/en/messages.json'), 'utf8'));
+const supportedLocales = ['de', 'en', 'es', 'ja', 'pt_BR', 'uk'];
+const localeDirectoryEntries = await readdir(path.join(root, '_locales'), { withFileTypes: true });
+const localeNames = localeDirectoryEntries
+  .filter(entry => entry.isDirectory())
+  .map(entry => entry.name)
+  .sort();
+const localeMessages = Object.fromEntries(await Promise.all(supportedLocales.map(async locale => [
+  locale,
+  JSON.parse(await readFile(path.join(root, `_locales/${locale}/messages.json`), 'utf8'))
+])));
+const messages = localeMessages.en;
 const packageJson = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8'));
 const readme = await readFile(path.join(root, 'README.md'), 'utf8');
 const buildSource = await readFile(path.join(root, 'tools/build.mjs'), 'utf8');
 
 check(manifest.manifest_version === 3, 'manifest_version must remain 3 for the Chromium build.');
+check(manifest.default_locale === 'en', 'The default locale must remain English.');
+check(JSON.stringify(localeNames) === JSON.stringify(supportedLocales),
+  `Locale directories must be exactly: ${supportedLocales.join(', ')}.`);
 check(manifest.version === packageJson.version, 'manifest.json and package.json versions differ.');
 check(!packageJson.buildLabel,
   'Release packages must not carry an experimental build label.');
@@ -80,8 +93,6 @@ check(manifest.content_scripts?.[0]?.match_about_blank === true &&
   manifest.content_scripts?.[0]?.match_origin_as_fallback === true,
   'The Chromium picker must cover related blank, data and blob frames.');
 check(!('web_accessible_resources' in manifest), 'Internal update resources must not be web-accessible.');
-check([...messages.description.message].length <= 132, 'The localized manifest description exceeds 132 characters.');
-
 for (const relativePath of [
   manifest.action?.default_popup,
   manifest.background?.service_worker,
@@ -114,6 +125,25 @@ for (const match of JSON.stringify(manifest).matchAll(/__MSG_([^_]+)__/g)) {
 
 for (const key of usedMessageKeys) {
   check(Boolean(messages[key]?.message), `Missing English localization key: ${key}`);
+}
+
+const englishMessageKeys = Object.keys(messages).sort();
+
+for (const locale of supportedLocales) {
+  const localizedMessages = localeMessages[locale];
+  const localizedKeys = Object.keys(localizedMessages).sort();
+
+  check(JSON.stringify(localizedKeys) === JSON.stringify(englishMessageKeys),
+    `${locale} localization keys differ from English.`);
+
+  for (const key of englishMessageKeys) {
+    check(typeof localizedMessages[key]?.message === 'string' &&
+      localizedMessages[key].message.length > 0,
+    `Missing ${locale} localization message: ${key}`);
+  }
+
+  check([...localizedMessages.description.message].length <= 132,
+    `${locale} manifest description exceeds 132 characters.`);
 }
 
 const firstPartyTextFiles = allFiles.filter(file => {
@@ -161,4 +191,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Static checks passed: ${javascriptFiles.length} JavaScript files, ${usedMessageKeys.size} localization keys.`);
+console.log(`Static checks passed: ${javascriptFiles.length} JavaScript files, ${usedMessageKeys.size} localization keys across ${supportedLocales.length} locales.`);
