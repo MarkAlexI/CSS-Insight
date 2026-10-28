@@ -3,7 +3,7 @@
   "name": "__MSG_chromename__",
   "short_name": "__MSG_shortname__",
   "description": "__MSG_description__",
-  "version": "1.21.0",
+  "version": "1.22.0",
   "author": "MarkAlexI",
   "homepage_url": "https://ext.pp.ua/css-insight.html",
   "icons": {
@@ -35,10 +35,12 @@
         "<all_urls>"
       ],
       "js": [
-        "scripts/formatRule.js",
-        "scripts/getSubSelectors.js",
+        "scripts/inspectionTarget.js",
         "scripts/getTagName.js"
-      ]
+      ],
+      "all_frames": true,
+      "match_about_blank": true,
+      "match_origin_as_fallback": true
     }
   ],
   "background": {

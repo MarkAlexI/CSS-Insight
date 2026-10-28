@@ -74,6 +74,11 @@ check(Array.isArray(manifest.content_scripts) && manifest.content_scripts.length
   'The Chromium picker controller must be declared as a content script.');
 check(manifest.content_scripts?.[0]?.matches?.includes('<all_urls>'),
   'The Chromium picker must be available on supported pages before the popup opens.');
+check(manifest.content_scripts?.[0]?.all_frames === true,
+  'The Chromium picker must be injected into matching iframe documents.');
+check(manifest.content_scripts?.[0]?.match_about_blank === true &&
+  manifest.content_scripts?.[0]?.match_origin_as_fallback === true,
+  'The Chromium picker must cover related blank, data and blob frames.');
 check(!('web_accessible_resources' in manifest), 'Internal update resources must not be web-accessible.');
 check([...messages.description.message].length <= 132, 'The localized manifest description exceeds 132 characters.');
 
@@ -85,7 +90,7 @@ for (const relativePath of [
   check(await exists(relativePath), `Manifest resource is missing: ${relativePath}`);
 }
 
-for (const forbiddenFile of ['1.html', '1.sql']) {
+for (const forbiddenFile of ['1.html', '1.sql', 'scripts/getSubSelectors.js']) {
   check(!await exists(forbiddenFile), `Accidental file is still present: ${forbiddenFile}`);
 }
 

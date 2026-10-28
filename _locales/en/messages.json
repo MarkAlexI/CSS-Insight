@@ -46,5 +46,6 @@
   "pageaccessprotected": { "message": "CSS Insight cannot run on browser-internal or protected pages." },
   "pageaccesswebstore": { "message": "Chrome does not allow extensions to inspect Chrome Web Store pages." },
   "pageaccessfile": { "message": "Enable 'Allow access to file URLs' for CSS Insight on the Extensions page." },
-  "operationfailed": { "message": "CSS Insight could not complete the operation." }
+  "operationfailed": { "message": "CSS Insight could not complete the operation." },
+  "targetunavailable": { "message": "The selected frame or open shadow root is no longer available." }
 }

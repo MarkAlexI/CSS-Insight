@@ -171,7 +171,19 @@ function isEligibleTab(tab) {
 function normalizePickerResult(value) {
   return {
     selector: typeof value?.selector === 'string' ? value.selector : '',
+    shadowPath: Array.isArray(value?.shadowPath)
+      ? value.shadowPath
+        .filter(selector => typeof selector === 'string' && selector.trim())
+        .slice(0, 16)
+        .map(selector => selector.trim().slice(0, 2048))
+      : [],
     tabId: Number.isInteger(value?.tabId) ? value.tabId : null,
+    frameId: Number.isInteger(value?.frameId) && value.frameId >= 0
+      ? value.frameId
+      : 0,
+    documentId: typeof value?.documentId === 'string' && value.documentId
+      ? value.documentId
+      : null,
     windowId: Number.isInteger(value?.windowId) ? value.windowId : null,
     updatedAt: Number(value?.updatedAt) || 0
   };
@@ -326,10 +338,17 @@ async function sendPickerCommand(tab, action, session = null) {
       throw error;
     }
 
-    await executeScript({
-      target: { tabId: tab.id },
-      files: ['scripts/getTagName.js']
-    });
+    try {
+      await executeScript({
+        target: { tabId: tab.id, allFrames: true },
+        files: ['scripts/inspectionTarget.js', 'scripts/getTagName.js']
+      });
+    } catch {
+      await executeScript({
+        target: { tabId: tab.id },
+        files: ['scripts/inspectionTarget.js', 'scripts/getTagName.js']
+      });
+    }
     return sendTabMessage(tab.id, message);
   }
 }
@@ -431,7 +450,7 @@ function cancelPicker(windowId) {
   });
 }
 
-function selectElement(tab, token, selector) {
+function selectElement(tab, frameId, documentId, token, selector, shadowPath) {
   return queuePickerTask(async () => {
     if (!isEligibleTab(tab) || typeof selector !== 'string' || !selector) {
       return { ok: false, accepted: false };
@@ -454,7 +473,10 @@ function selectElement(tab, token, selector) {
 
     const result = normalizePickerResult({
       selector: selector.slice(0, 4096),
+      shadowPath,
       tabId: tab.id,
+      frameId,
+      documentId,
       windowId: tab.windowId,
       updatedAt: Date.now()
     });
@@ -582,8 +604,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
     return respond(sendResponse, selectElement(
       sender.tab,
+      sender.frameId,
+      sender.documentId,
       message.token,
-      message.selector
+      message.selector,
+      message.shadowPath
     ));
   }
 

@@ -17,10 +17,10 @@ test('preserves the permissions required by the Kiwi tab-based popup flow', () =
   assert.equal(manifest.content_scripts.length, 1);
   assert.deepEqual(manifest.content_scripts[0].matches, ['<all_urls>']);
   assert.deepEqual(manifest.content_scripts[0].js, [
-    'scripts/formatRule.js',
-    'scripts/getSubSelectors.js',
+    'scripts/inspectionTarget.js',
     'scripts/getTagName.js'
   ]);
+  assert.equal(manifest.content_scripts[0].all_frames, true);
 });
 
 test('picker submits a tokenized result without rewriting links', () => {
@@ -42,7 +42,7 @@ test('picker supports one-step selection and cleanup', () => {
 test('dynamic style collectors receive their helper scripts explicitly', () => {
   assert.match(
     commonSource,
-    /'scripts\/getDeclaredStyles\.js':[\s\S]*?'scripts\/cssRuleWalker\.js'/
+    /'scripts\/getDeclaredStyles\.js':[\s\S]*?'scripts\/inspectionTarget\.js'[\s\S]*?'scripts\/cssRuleWalker\.js'/
   );
   assert.match(
     commonSource,
@@ -53,6 +53,8 @@ test('dynamic style collectors receive their helper scripts explicitly', () => {
     /'scripts\/getMediaRules\.js':[\s\S]*?'scripts\/cssRuleWalker\.js'/
   );
   assert.match(commonSource, /files: \[\.\.\.dependencies, scriptFile\]/);
+  assert.doesNotMatch(commonSource, /getSubSelectors/);
+  assert.match(commonSource, /frameIds: \[frameId\]/);
 });
 
 test('popup arms the current window without forcing a tab', () => {
