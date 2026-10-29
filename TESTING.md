@@ -94,11 +94,12 @@ Run `npm run build`, then load `dist/chromium` as an unpacked extension through 
 ## Package and permissions
 
 - Confirm the extension requests `storage`, `tabs`, `activeTab`, `scripting` and all-sites host access.
-- Confirm the picker content controller remains idle until **Pick an Element** is selected.
+- Confirm the picker content controller remains idle until **Pick an Element** is selected and page operations use the resident inspection runtime.
 - Confirm the manifest content script uses `all_frames`, `match_about_blank` and `match_origin_as_fallback` without adding permissions.
 - Confirm Chromium uses an MV3 service worker.
 - Run `npm run check` and confirm all automated tests pass.
-- Update from `1.22.2` to `1.22.3` and confirm no release-notes tab opens. Simulate a minor-version update and confirm the localized release-notes page opens once.
-- Run `unzip -t dist/CSS-Insight-chromium-1.22.3-store.zip`.
-- Run `unzip -t dist/CSS-Insight-chromium-1.22.3-source.zip` and confirm `manifest.json`, `package.json`, `scripts/` and `tests/` are at the ZIP root.
+- In Kiwi, reload an already open test page once after installing the update, then run Media Rules and Keyframes repeatedly on at least two sites.
+- Update from `1.22.3` to `1.22.4` and confirm no release-notes tab opens. Simulate a minor-version update and confirm the localized release-notes page opens once.
+- Run `unzip -t dist/CSS-Insight-chromium-1.22.4-store.zip`.
+- Run `unzip -t dist/CSS-Insight-chromium-1.22.4-source.zip` and confirm `manifest.json`, `package.json`, `scripts/` and `tests/` are at the ZIP root.
 - Confirm the store archive contains no tests, build tools, `.gitignore` or obsolete scripts.

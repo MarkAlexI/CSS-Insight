@@ -1,4 +1,4 @@
-# Store listing copy for 1.22.3
+# Store listing copy for 1.22.4
 
 Use the localized short descriptions below in the Chrome Web Store listing. The full descriptions can remain the localized marketing copy prepared for the previous release.
 
@@ -10,7 +10,7 @@ Short description:
 
 Release notes:
 
-> Added filtering for computed properties by name or value, plus match status for Media Rules in the current viewport.
+> Fixed Media Rules and Keyframes in Firefox-compatible and older Chromium environments by using a reusable page runtime instead of repeated script injection.
 
 ## Deutsch
 
@@ -20,7 +20,7 @@ Kurzbeschreibung:
 
 Versionshinweise:
 
-> Neu sind ein Filter für berechnete Eigenschaften nach Name oder Wert sowie der Übereinstimmungsstatus von Medienregeln in der aktuellen Ansicht.
+> Media Rules und Keyframes funktionieren in Firefox-kompatiblen und älteren Chromium-Umgebungen wieder zuverlässig. Seitenoperationen nutzen jetzt eine wiederverwendbare Laufzeit.
 
 ## Español
 
@@ -30,7 +30,7 @@ Descripción breve:
 
 Notas de la versión:
 
-> Se añadieron un filtro de propiedades calculadas por nombre o valor y el estado de coincidencia de Media Rules en la vista actual.
+> Se corrigieron Media Rules y Keyframes en entornos compatibles con Firefox y versiones antiguas de Chromium mediante un entorno reutilizable en la página.
 
 ## 日本語
 
@@ -40,7 +40,7 @@ Notas de la versión:
 
 リリースノート:
 
-> 計算済みプロパティを名前または値で絞り込む機能と、現在の表示環境におけるMedia Rulesの一致状態を追加しました。
+> Firefox互換環境と旧Chromium環境でMedia RulesとKeyframesが安定して動作するよう、再利用可能なページランタイムに切り替えました。
 
 ## Português do Brasil
 
@@ -50,7 +50,7 @@ Descrição curta:
 
 Notas da versão:
 
-> Adicionamos filtro de propriedades computadas por nome ou valor e o status de correspondência das Media Rules na visualização atual.
+> Corrigimos Media Rules e Keyframes em ambientes compatíveis com Firefox e Chromium antigo usando um runtime reutilizável na página.
 
 ## Українська
 
@@ -60,4 +60,4 @@ Notas da versão:
 
 Примітки до випуску:
 
-> Додано фільтрування обчислених властивостей за назвою або значенням і статус відповідності Media Rules поточному вікну перегляду.
+> Виправлено Media Rules і Keyframes у Firefox-сумісних та старіших Chromium-середовищах завдяки повторно використовуваному середовищу виконання сторінки.

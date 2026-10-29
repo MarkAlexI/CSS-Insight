@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.22.4 - 2026-10-29
+
+### Fixed
+
+- Media Rules and Keyframes no longer depend on repeated programmatic script injection in Kiwi.
+- Repeated CSS inspection no longer redeclares lexical helper constants in Firefox-compatible content scopes.
+- Document-aware message routing falls back to the selected frame when an older Chromium fork cannot route by `documentId`.
+
+### Changed
+
+- Page operations now run through one reusable manifest content runtime, with dynamic injection retained only as a bootstrap fallback.
+- Permissions and host access declarations remain unchanged.
+
+### Development
+
+- Added regression coverage for repeated helper loading, page-operation dispatch, collector failures and `documentId` fallback.
+
 ## 1.22.3 - 2026-10-29
 
 ### Added

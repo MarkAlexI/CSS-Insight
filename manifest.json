@@ -3,7 +3,7 @@
   "name": "__MSG_chromename__",
   "short_name": "__MSG_shortname__",
   "description": "__MSG_description__",
-  "version": "1.22.3",
+  "version": "1.22.4",
   "author": "MarkAlexI",
   "homepage_url": "https://ext.pp.ua/css-insight.html",
   "icons": {
@@ -35,7 +35,16 @@
         "<all_urls>"
       ],
       "js": [
+        "scripts/formatRule.js",
         "scripts/inspectionTarget.js",
+        "scripts/cssRuleWalker.js",
+        "scripts/getDeclaredStyles.js",
+        "scripts/getComputedStyles.js",
+        "scripts/getMediaRules.js",
+        "scripts/getKeyframesRules.js",
+        "scripts/applyStyles.js",
+        "scripts/showModalWithCSSData.js",
+        "scripts/inspectionBridge.js",
         "scripts/getTagName.js"
       ],
       "all_frames": true,
