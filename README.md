@@ -6,7 +6,7 @@
 ![Last commit](https://img.shields.io/github/last-commit/MarkAlexI/CSS-Insight)
 ![Issues](https://img.shields.io/github/issues/MarkAlexI/CSS-Insight)
 [![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-v1.19.1-brightgreen?logo=google-chrome)](https://chromewebstore.google.com/detail/keejoflofbcbepjbbhnmiomgmjjihmnb)
-![status](https://img.shields.io/badge/status-v1.22.2-blue)
+![status](https://img.shields.io/badge/status-v1.22.3-blue)
 
 CSS Insight is a lightweight browser extension for inspecting and testing CSS directly on a webpage. It is designed for quick checks when opening a full developer tools workflow is inconvenient.
 
@@ -15,7 +15,8 @@ CSS Insight is a lightweight browser extension for inspecting and testing CSS di
 - **Element picker**: Click or tap an element in a page, matching iframe or open shadow root to create a usable CSS selector.
 - **Declared styles**: Find matching rules across nested CSS at-rules, native nesting and constructed stylesheets in the selected root.
 - **Computed styles**: View the final computed property values of an element.
-- **Media rules and keyframes**: Explore responsive and animation rules recursively in the selected document or open shadow root.
+- **Computed-style filter**: Narrow large computed-style results by property name or resolved value.
+- **Media rules and keyframes**: Explore responsive and animation rules recursively and see whether media conditions currently match.
 - **CSS preview**: Apply a custom rule to the selected document or open shadow root without changing the website source.
 - **Visible target context**: See whether actions use the page, an iframe or an open shadow root, and reset to the active page at any time.
 - **Removable preview**: Undo the CSS Insight preview without reloading the page.

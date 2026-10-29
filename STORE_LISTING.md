@@ -1,4 +1,4 @@
-# Store listing copy for 1.22.2
+# Store listing copy for 1.22.3
 
 Use the localized short descriptions below in the Chrome Web Store listing. The full descriptions can remain the localized marketing copy prepared for the previous release.
 
@@ -10,7 +10,7 @@ Short description:
 
 Release notes:
 
-> Added a visible inspection target, one-click reset to the active page, removable CSS previews, a localized update page and improved keyboard focus.
+> Added filtering for computed properties by name or value, plus match status for Media Rules in the current viewport.
 
 ## Deutsch
 
@@ -20,7 +20,7 @@ Kurzbeschreibung:
 
 Versionshinweise:
 
-> Neu sind ein sichtbares Inspektionsziel, das Zurücksetzen auf die aktive Seite mit einem Klick, entfernbare CSS-Vorschauen, eine lokalisierte Update-Seite und ein verbesserter Tastaturfokus.
+> Neu sind ein Filter für berechnete Eigenschaften nach Name oder Wert sowie der Übereinstimmungsstatus von Medienregeln in der aktuellen Ansicht.
 
 ## Español
 
@@ -30,7 +30,7 @@ Descripción breve:
 
 Notas de la versión:
 
-> Se añadieron un objetivo de inspección visible, el restablecimiento a la página activa con un clic, vistas previas de CSS eliminables, una página de actualización localizada y un mejor foco de teclado.
+> Se añadieron un filtro de propiedades calculadas por nombre o valor y el estado de coincidencia de Media Rules en la vista actual.
 
 ## 日本語
 
@@ -40,7 +40,7 @@ Notas de la versión:
 
 リリースノート:
 
-> 検査対象の表示、アクティブなページへのワンクリック復帰、CSSプレビューの削除、更新ページの多言語対応、キーボードフォーカスの改善を追加しました。
+> 計算済みプロパティを名前または値で絞り込む機能と、現在の表示環境におけるMedia Rulesの一致状態を追加しました。
 
 ## Português do Brasil
 
@@ -50,7 +50,7 @@ Descrição curta:
 
 Notas da versão:
 
-> Adicionamos alvo de inspeção visível, redefinição para a página ativa com um clique, remoção da visualização de CSS, página de atualização localizada e foco do teclado aprimorado.
+> Adicionamos filtro de propriedades computadas por nome ou valor e o status de correspondência das Media Rules na visualização atual.
 
 ## Українська
 
@@ -60,4 +60,4 @@ Notas da versão:
 
 Примітки до випуску:
 
-> Додано видиму ціль перевірки, повернення до активної сторінки одним натисканням, видалення попереднього перегляду CSS, локалізовану сторінку оновлення та краще керування фокусом клавіатури.
+> Додано фільтрування обчислених властивостей за назвою або значенням і статус відповідності Media Rules поточному вікну перегляду.

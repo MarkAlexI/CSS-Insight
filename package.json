@@ -1,6 +1,6 @@
 {
   "name": "css-insight",
-  "version": "1.22.2",
+  "version": "1.22.3",
   "private": true,
   "type": "module",
   "description": "Chromium source and reproducible store packaging for CSS Insight.",
