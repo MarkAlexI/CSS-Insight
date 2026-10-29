@@ -12,6 +12,7 @@ function createEvent() {
 
 function installChromeMock({ silentMessage = () => false } = {}) {
   const stored = {};
+  const createdTabs = [];
   const messages = [];
   const tabs = [
     { id: 1, windowId: 7, active: true, url: 'https://one.example/' },
@@ -59,7 +60,9 @@ function installChromeMock({ silentMessage = () => false } = {}) {
 
         callback({ source: 'css-insight-picker', ok: true });
       },
-      create() {},
+      create(properties) {
+        createdTabs.push(structuredClone(properties));
+      },
       onActivated: events.activated,
       onUpdated: events.updated,
       onRemoved: events.removed
@@ -71,7 +74,7 @@ function installChromeMock({ silentMessage = () => false } = {}) {
     },
     runtime: {
       lastError: null,
-      getManifest: () => ({ version: '1.22.1' }),
+      getManifest: () => ({ version: '1.22.2' }),
       getURL: path => `chrome-extension://test/${path}`,
       onMessage: events.message,
       onStartup: events.startup,
@@ -79,7 +82,7 @@ function installChromeMock({ silentMessage = () => false } = {}) {
     }
   };
 
-  return { events, messages, stored, tabs };
+  return { createdTabs, events, messages, stored, tabs };
 }
 
 function settleWithin(promise, timeoutMs = 1_500) {
@@ -206,4 +209,21 @@ test('a silent tab cannot permanently block a later picker session', async t => 
   assert.ok(firstStopMessages.every(entry =>
     entry.message.token === firstArm.session.token
   ));
+});
+
+test('opens release notes for feature updates but keeps patch updates silent', async t => {
+  const mock = installChromeMock();
+  t.after(() => { delete globalThis.chrome; });
+
+  const moduleUrl = new URL('../scripts/service_worker.js', import.meta.url);
+  moduleUrl.searchParams.set('update-page-test', `${Date.now()}-${Math.random()}`);
+  await import(moduleUrl);
+
+  mock.events.installed.listener({ reason: 'update', previousVersion: '1.22.1' });
+  assert.equal(mock.createdTabs.length, 0);
+
+  mock.events.installed.listener({ reason: 'update', previousVersion: '1.21.9' });
+  assert.deepEqual(mock.createdTabs, [{
+    url: 'chrome-extension://test/update/update.html?version=1.22.2'
+  }]);
 });
