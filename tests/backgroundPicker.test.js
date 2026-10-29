@@ -74,7 +74,7 @@ function installChromeMock({ silentMessage = () => false } = {}) {
     },
     runtime: {
       lastError: null,
-      getManifest: () => ({ version: '1.22.4' }),
+      getManifest: () => ({ version: '1.22.5' }),
       getURL: path => `chrome-extension://test/${path}`,
       onMessage: events.message,
       onStartup: events.startup,
@@ -219,11 +219,11 @@ test('opens release notes for feature updates but keeps patch updates silent', a
   moduleUrl.searchParams.set('update-page-test', `${Date.now()}-${Math.random()}`);
   await import(moduleUrl);
 
-  mock.events.installed.listener({ reason: 'update', previousVersion: '1.22.3' });
+  mock.events.installed.listener({ reason: 'update', previousVersion: '1.22.4' });
   assert.equal(mock.createdTabs.length, 0);
 
   mock.events.installed.listener({ reason: 'update', previousVersion: '1.21.9' });
   assert.deepEqual(mock.createdTabs, [{
-    url: 'chrome-extension://test/update/update.html?version=1.22.4'
+    url: 'chrome-extension://test/update/update.html?version=1.22.5'
   }]);
 });

@@ -47,6 +47,7 @@
   "pageaccesswebstore": { "message": "O Chrome não permite que extensões inspecionem páginas da Chrome Web Store." },
   "pageaccessfile": { "message": "Ative o acesso a URLs de arquivo do CSS Insight na página Extensões." },
   "operationfailed": { "message": "O CSS Insight não conseguiu concluir a operação." },
+  "runtimechanged": { "message": "A página mudou antes da conclusão da operação. Tente novamente." },
   "targetunavailable": { "message": "O frame selecionado ou shadow root aberto não está mais disponível." },
   "currenttarget": { "message": "Alvo atual" },
   "useactivepage": { "message": "Usar página ativa" },

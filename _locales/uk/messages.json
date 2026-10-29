@@ -47,6 +47,7 @@
   "pageaccesswebstore": { "message": "Chrome не дозволяє розширенням перевіряти сторінки Chrome Web Store." },
   "pageaccessfile": { "message": "Увімкніть для CSS Insight доступ до URL-адрес файлів на сторінці розширень." },
   "operationfailed": { "message": "CSS Insight не вдалося завершити операцію." },
+  "runtimechanged": { "message": "Сторінка змінилася до завершення операції. Спробуйте ще раз." },
   "targetunavailable": { "message": "Вибраний фрейм або відкритий shadow root більше недоступний." },
   "currenttarget": { "message": "Поточна ціль" },
   "useactivepage": { "message": "Використати активну сторінку" },

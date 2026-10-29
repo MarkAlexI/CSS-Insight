@@ -1,6 +1,7 @@
 import {
   ensureContentScripts,
-  executeScript
+  executeScript,
+  RUNTIME_CHANGED_ERROR_CODE
 } from './scripts/common.js';
 import {
   displayStyles,
@@ -383,6 +384,10 @@ function formatOperationError(error, tab) {
     return t(error.messageKey);
   }
 
+  if (error?.code === RUNTIME_CHANGED_ERROR_CODE) {
+    return t('runtimechanged');
+  }
+
   const message = error instanceof Error ? error.message : String(error || '');
   const lowerMessage = message.toLowerCase();
   const pageUrl = tab?.url || error?.pageUrl || '';
@@ -484,11 +489,16 @@ async function prepareTargetContext() {
   assertPageAccess(tab);
 
   try {
-    await ensureContentScripts(tab.id, targetFrameId, targetDocumentId);
+    const controllers = await ensureContentScripts(
+      tab.id,
+      targetFrameId,
+      targetDocumentId
+    );
     return {
       tab,
       frameId: targetFrameId,
       documentId: targetDocumentId,
+      runtimeInstanceId: controllers.runtimeInstanceId,
       shadowPath: [...targetShadowPath]
     };
   } catch (error) {
@@ -496,6 +506,21 @@ async function prepareTargetContext() {
     normalizedError.pageUrl = tab.url || '';
     throw normalizedError;
   }
+}
+
+async function prepareTopFrameRuntime(context) {
+  if (context.frameId === 0) {
+    return {
+      documentId: context.documentId,
+      runtimeInstanceId: context.runtimeInstanceId
+    };
+  }
+
+  const controllers = await ensureContentScripts(context.tab.id, 0, null);
+  return {
+    documentId: null,
+    runtimeInstanceId: controllers.runtimeInstanceId
+  };
 }
 
 async function runPageOperation(operation) {
@@ -561,7 +586,8 @@ async function retrieveStyles(scriptFile, data = null) {
       scriptFile,
       request,
       context.frameId,
-      context.documentId
+      context.documentId,
+      context.runtimeInstanceId
     );
     displayStyleResult(result);
   });
@@ -610,11 +636,14 @@ document.getElementById('moreDetailsBtn').addEventListener('click', async () => 
   const cssData = styleDataElement.textContent || NO_DATA;
 
   await runPageOperation(async context => {
+    const topFrameRuntime = await prepareTopFrameRuntime(context);
     await executeScript(
       context.tab.id,
       'scripts/showModalWithCSSData.js',
       cssData,
-      0
+      0,
+      topFrameRuntime.documentId,
+      topFrameRuntime.runtimeInstanceId
     );
     const button = document.getElementById('moreDetailsBtn');
     button.textContent = LOOK_DETAILS;
@@ -655,7 +684,8 @@ document.getElementById('injectCSSBtn').addEventListener('click', async () => {
       'scripts/applyStyles.js',
       { cssText: rule, shadowPath: context.shadowPath },
       context.frameId,
-      context.documentId
+      context.documentId,
+      context.runtimeInstanceId
     );
     document.getElementById('newRule').classList.add('hidden');
     showStatus(t('stylesapplied'), 'success');
@@ -669,7 +699,8 @@ document.getElementById('removeRuleBtn').addEventListener('click', async () => {
       'scripts/applyStyles.js',
       { remove: true, shadowPath: context.shadowPath },
       context.frameId,
-      context.documentId
+      context.documentId,
+      context.runtimeInstanceId
     );
     showStatus(t(removed ? 'stylesremoved' : 'nostylespreview'), removed ? 'success' : 'info');
   });

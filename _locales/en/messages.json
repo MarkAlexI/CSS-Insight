@@ -47,6 +47,7 @@
   "pageaccesswebstore": { "message": "Chrome does not allow extensions to inspect Chrome Web Store pages." },
   "pageaccessfile": { "message": "Enable 'Allow access to file URLs' for CSS Insight on the Extensions page." },
   "operationfailed": { "message": "CSS Insight could not complete the operation." },
+  "runtimechanged": { "message": "The page changed before the operation completed. Please try again." },
   "targetunavailable": { "message": "The selected frame or open shadow root is no longer available." },
   "currenttarget": { "message": "Current target" },
   "useactivepage": { "message": "Use active page" },

@@ -1,4 +1,4 @@
-# Store listing copy for 1.22.4
+# Store listing copy for 1.22.5
 
 Use the localized short descriptions below in the Chrome Web Store listing. The full descriptions can remain the localized marketing copy prepared for the previous release.
 
@@ -10,7 +10,7 @@ Short description:
 
 Release notes:
 
-> Fixed Media Rules and Keyframes in Firefox-compatible and older Chromium environments by using a reusable page runtime instead of repeated script injection.
+> Prevented page or frame navigation from redirecting an in-progress CSS operation into a replacement document. The popup now asks you to retry safely when needed.
 
 ## Deutsch
 
@@ -20,7 +20,7 @@ Kurzbeschreibung:
 
 Versionshinweise:
 
-> Media Rules und Keyframes funktionieren in Firefox-kompatiblen und älteren Chromium-Umgebungen wieder zuverlässig. Seitenoperationen nutzen jetzt eine wiederverwendbare Laufzeit.
+> Eine Seiten- oder Frame-Navigation kann eine laufende CSS-Prüfung nicht mehr in ein neues Dokument umleiten. Das Popup fordert bei Bedarf sicher zu einem erneuten Versuch auf.
 
 ## Español
 
@@ -30,7 +30,7 @@ Descripción breve:
 
 Notas de la versión:
 
-> Se corrigieron Media Rules y Keyframes en entornos compatibles con Firefox y versiones antiguas de Chromium mediante un entorno reutilizable en la página.
+> La navegación de una página o un marco ya no puede redirigir una operación CSS en curso a un documento nuevo. El popup solicita repetirla de forma segura cuando es necesario.
 
 ## 日本語
 
@@ -40,7 +40,7 @@ Notas de la versión:
 
 リリースノート:
 
-> Firefox互換環境と旧Chromium環境でMedia RulesとKeyframesが安定して動作するよう、再利用可能なページランタイムに切り替えました。
+> ページやフレームの移動時に、実行中のCSS操作が新しいドキュメントへ誤って引き継がれないよう修正しました。必要な場合は安全に再試行を案内します。
 
 ## Português do Brasil
 
@@ -50,7 +50,7 @@ Descrição curta:
 
 Notas da versão:
 
-> Corrigimos Media Rules e Keyframes em ambientes compatíveis com Firefox e Chromium antigo usando um runtime reutilizável na página.
+> A navegação da página ou do frame não pode mais redirecionar uma operação CSS em andamento para um novo documento. O popup solicita uma nova tentativa com segurança quando necessário.
 
 ## Українська
 
@@ -60,4 +60,4 @@ Notas da versão:
 
 Примітки до випуску:
 
-> Виправлено Media Rules і Keyframes у Firefox-сумісних та старіших Chromium-середовищах завдяки повторно використовуваному середовищу виконання сторінки.
+> Навігація сторінки або фрейму більше не перенаправляє активну CSS-операцію в новий документ. За потреби попап безпечно запропонує повторити операцію.

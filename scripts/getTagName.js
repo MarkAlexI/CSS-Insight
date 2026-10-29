@@ -12,7 +12,7 @@
 
   const existingController = globalThis[CONTROLLER_KEY];
 
-  if (existingController?.version === '1.22.4') {
+  if (existingController?.version === '1.22.5') {
     return;
   }
 
@@ -298,7 +298,7 @@
   }
 
   const controller = {
-    version: '1.22.4',
+    version: '1.22.5',
     destroy,
     getState,
     startTracking,
